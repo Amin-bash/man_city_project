@@ -20,7 +20,7 @@ const AdminNav = () => {
     },
     {
       title: 'Add Players',
-      linkTo: '/admin_players/add_player'
+      linkTo: '/admin_players/add_players'
     }
   ]
 
@@ -39,16 +39,10 @@ const AdminNav = () => {
   )
 
   const logoutHandler = () => {
-    // firebase.auth().signOut().then(()=> {
-    //   console.log('succ sign out');
-    // }),(error) => {
-    //   console.log('there is and error');
-    // }
     firebase.auth().signOut().then(()=> {
       console.log('succ logout');
     }, (error) => {
       console.log('somthing happened');
-       
     })
   }
 
