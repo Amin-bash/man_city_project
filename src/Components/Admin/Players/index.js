@@ -28,7 +28,6 @@ const AdminPlayers = () => {
 				prevState.players = reverseArray(players);
 				return { ...prevState };
 			});
-			console.log(state.players);
 		});
 	}, []);
 

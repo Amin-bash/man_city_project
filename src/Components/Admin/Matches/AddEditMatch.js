@@ -6,11 +6,22 @@ import { CustomButton } from '../../ui/Button';
 import './styles.css';
 import { firebaseTeams, firebaseDB, firebaseMatches } from '../../../firebase';
 import { firebaseLooper } from '../../ui/misc';
+import { addPlayerOrMatchService, updatePlayerOrMatchService } from '../../Service/firebaseService';
+import {
+	updateFormSelectService,
+	updateFormInputService,
+	setStateErrorAndLoading,
+	updatePlayerAndMatchFieldService,
+	isPageLoading,
+	onSubmitPlayerOrMatch
+} from '../../Service/formFieldsService';
+import { CircularProgress } from '@material-ui/core';
 
 const AddEditMatch = (props) => {
 	const [ state, setState ] = useState({
 		matchId: '',
 		loading: false,
+		isFormUpdated: false,
 		formType: '',
 		formError: false,
 		formSuccess: '',
@@ -173,7 +184,9 @@ const AddEditMatch = (props) => {
 	});
 
 	useEffect(() => {
+		isPageLoading(true, setState);
 		const matchId = props.match.params.id;
+		console.log(matchId, ' here i got the match id from useSate');
 		const getTeams = (match, type) => {
 			firebaseTeams.once('value').then((snapshot) => {
 				const teams = firebaseLooper(snapshot);
@@ -184,7 +197,8 @@ const AddEditMatch = (props) => {
 						value: childSnapshot.val().shortName
 					});
 				});
-				updateFields(match, teamOptions, teams, type, matchId);
+				// updateFields(match, teams, type, matchId, teamOptions);
+				updatePlayerAndMatchFieldService(state, setState, match, matchId, type, null, teams, teamOptions);
 			});
 		};
 
@@ -199,200 +213,149 @@ const AddEditMatch = (props) => {
 		}
 	}, []);
 
-	const updateFields = (match, teamOptions, teams, type, matchId) => {
-		const newFormData = { ...state.formData };
-		for (let key in newFormData) {
-			if (match) {
-				newFormData[key].value = match[key];
-				newFormData[key].valid = true;
-			}
-			if (key === 'local' || key === 'away') {
-				newFormData[key].config.options = teamOptions;
-			}
-		}
-		// Update the state
-		setState((prevState) => {
-			prevState.matchId = matchId;
-			prevState.formType = type;
-			prevState.formData = newFormData;
-			prevState.teams = teams;
-			return { ...prevState };
-		});
-	};
+	// const updateFields = (match, teams, type, matchId, teamOptions) => {
+	// 	const newFormData = { ...state.formData };
+	// 	for (let key in newFormData) {
+	// 		if (match) {
+	// 			newFormData[key].value = match[key];
+	// 			newFormData[key].valid = true;
+	// 		}
+	// 		if (key === 'local' || key === 'away') {
+	// 			newFormData[key].config.options = teamOptions;
+	// 		}
+	// 	}
+	// 	// Update the values
+	// 	setState((prevState) => {
+	// 		prevState.matchId = matchId;
+	// 		prevState.formType = type;
+	// 		prevState.formData = newFormData;
+	// 		prevState.teams = teams;
+	// 		return { ...prevState };
+	// 	});
+	// };
 
+	// const getLocalAwayThumb = (dataToSubmit) => {
+	// 	state.teams.forEach((team) => {
+	// 		if (team.shortName === dataToSubmit.local) {
+	// 			dataToSubmit['localThmb'] = team.thmb;
+	// 		}
+	// 		if (team.shortName === dataToSubmit.away) {
+	// 			dataToSubmit['awayThmb'] = team.thmb;
+	// 		}
+	// 	});
+	// };
+
+	// if (state.isFormUpdated) {
+	// 	setStateErrorAndLoading(false, true, setState);
+
+	// 	let dataToSubmit = {};
+	// 	let formIsValid = true;
+	// 	for (let key in state.formData) {
+	// 		dataToSubmit[key] = state.formData[key].value;
+	// 		formIsValid = state.formData[key].valid && formIsValid;
+	// 	}
+
+	// 	getLocalAwayThumb(dataToSubmit);
+	// 	if (formIsValid) {
+	// 		if (state.formType === 'Edit Match') {
+	// 			// firebaseEditMatch(dataToSubmit);
+	// 			updatePlayerOrMatchService(setState, dataToSubmit, `matches/${state.matchId}`);
+	// 		} else {
+	// 			// Add Match
+	// 			addPlayerOrMatchService(setState, props, dataToSubmit, '/admin_matches',firebaseMatches);
+	// 		}
+	// 	} else {
+	// 		setStateErrorAndLoading(true, false, setState);
+	// 	}
+	// }
+	
+	// 
+	
+	// update Form inputs
 	const updateForm = (element) => {
-		const eventValue = element.event.target.value;
-		setState((prevState) => {
-			prevState.formData[element.nameProps].value = eventValue;
-			if (prevState.formData[element.nameProps].value !== '') {
-				prevState.formData[element.nameProps].valid = true;
-			} else {
-				prevState.formData[element.nameProps].valid = false;
-			}
-			prevState.formError = false;
-			return { ...prevState };
-		});
+		updateFormInputService(element, setState);
 	};
 
+	// update Form selects
 	const updateFormSelect = (event, item) => {
-		setState((prevState) => {
-			prevState.formData[item].value = event.value;
-			if (prevState.formData[item].value !== '') {
-				prevState.formData[item].valid = true;
-			} else {
-				prevState.formData[item].valid = false;
-			}
-			prevState.formError = false;
-			return { ...prevState };
-		});
+		updateFormSelectService(event, item, setState);
 	};
 
-	const setStateCatchError = () => {
-		setState((prevState) => {
-			prevState.formError = true;
-			prevState.loading = false;
-			return { ...prevState };
-		});
-	};
-
-	const successForm = (message) => {
-		setState((prevState) => {
-			prevState.formSuccess = message;
-			prevState.loading = false;
-			return { ...prevState };
-		});
-		setTimeout(() => {
-			setState((prevState) => {
-				prevState.formSuccess = '';
-				return { ...prevState };
-			});
-		}, 2000);
-	};
-
-	const getLocalAwayThumb = (dataToSubmit) => {
-		state.teams.forEach((team) => {
-			if (team.shortName === dataToSubmit.local) {
-				dataToSubmit['localThmb'] = team.thmb;
-			}
-			if (team.shortName === dataToSubmit.away) {
-				dataToSubmit['awayThmb'] = team.thmb;
-			}
-		});
-	};
-
-	const firebaseEditMatch = (dataToSubmit) => {
-		firebaseDB
-			.ref(`matches/${state.matchId}`)
-			.update(dataToSubmit)
-			.then(() => {
-				successForm('Updated correctly');
-			})
-			.catch((err) => {
-				setStateCatchError();
-			});
-	};
-
-	const firebaseAddMatch = (dataToSubmit) => {
-		firebaseMatches
-			.push(dataToSubmit)
-			.then(() => {
-				props.history.push('/admin_matches');
-			})
-			.catch((err) => {
-				setStateCatchError();
-			});
-	};
-
+	//Submit forms
 	const onSubmit = (event) => {
-		setState((prevState) => {
-			prevState.loading = true;
-			return { ...prevState };
-		});
-
-		let dataToSubmit = {};
-		let formIsValid = true;
-		for (let key in state.formData) {
-			dataToSubmit[key] = state.formData[key].value;
-			formIsValid = state.formData[key].valid && formIsValid;
-		}
-
-		getLocalAwayThumb(dataToSubmit);
-		if (formIsValid) {
-			if (state.formType === 'Edit Match') {
-				firebaseEditMatch(dataToSubmit);
-			} else {
-				// Add Match
-				firebaseAddMatch(dataToSubmit);
-			}
-		} else {
-			setStateCatchError();
-		}
+		onSubmitPlayerOrMatch(state, setState, props, '/admin_matches', `matches/${state.matchId}`, firebaseMatches);
 	};
 
 	return (
 		<AdminLayout>
-			<div className="editmatch_dialog_wrapper">
-				<h2>{state.formType}</h2>
-				<div>
-					<form onSubmit={handleSubmit(onSubmit)}>
-						{Object.keys(state.formData).map((item, i) => {
-							return !state.formData[item].showLabel ? (
-								<div
-									key={i}
-									className={
-										!state.formData[item].isResult ? (
-											'left select_team_layout'
-										) : (
-											'right select_team_layout'
-										)
-									}
-								>
-									{!state.formData[item].isResult && <div className="label_inputs">{item}</div>}
-									{state.formData[item].element === 'select' ? (
-										<FormField
-											formData={state.formData[item]}
-											selectedValue={[ { value: state.formData[item].value } ]}
-											change={(event) => updateFormSelect(event, item)}
-											options={state.formData[item].config.options}
-										/>
-									) : (
-										<FormField
-											nameProps={item}
-											formData={state.formData[item]}
-											change={(element) => updateForm(element)}
-										/>
-									)}
-								</div>
-							) : (
-								<div key={i}>
-									{state.formData[item].element === 'select' ? (
-										<FormField
-											formData={state.formData[item]}
-											selectedValue={[ { value: state.formData[item].value } ]}
-											change={(event) => updateFormSelect(event, item)}
-											options={state.formData[item].config.options}
-										/>
-									) : (
-										<FormField
-											nameProps={item}
-											formData={state.formData[item]}
-											change={(element) => updateForm(element)}
-										/>
-									)}
-								</div>
-							);
-						})}
-
-						<div className="success_label">{state.formSuccess}</div>
-						{state.formError && <div className="error_label">Something went wrong</div>}
-						<div className="admin_submit">
-							<CustomButton btnType="submit" loading={state.loading}>
-								{state.formType}
-							</CustomButton>
-						</div>
-					</form>
+			{state.isPageLoading ? (
+				<div className="admin_progress">
+					<CircularProgress thickness={7} style={{ color: '#98c5e9' }} />
 				</div>
-			</div>
+			) : (
+				<div className="editmatch_dialog_wrapper">
+					<h2>{state.formType}</h2>
+					<div>
+						<form onSubmit={handleSubmit(onSubmit)}>
+							{Object.keys(state.formData).map((item, i) => {
+								return !state.formData[item].showLabel ? (
+									<div
+										key={i}
+										className={
+											!state.formData[item].isResult ? (
+												'left select_team_layout'
+											) : (
+												'right select_team_layout'
+											)
+										}
+									>
+										{!state.formData[item].isResult && <div className="label_inputs">{item}</div>}
+										{state.formData[item].element === 'select' ? (
+											<FormField
+												formData={state.formData[item]}
+												selectedValue={[ { value: state.formData[item].value } ]}
+												change={(event) => updateFormSelect(event, item)}
+												options={state.formData[item].config.options}
+											/>
+										) : (
+											<FormField
+												nameProps={item}
+												formData={state.formData[item]}
+												change={(element) => updateForm(element)}
+											/>
+										)}
+									</div>
+								) : (
+									<div key={i}>
+										{state.formData[item].element === 'select' ? (
+											<FormField
+												formData={state.formData[item]}
+												selectedValue={[ { value: state.formData[item].value } ]}
+												change={(event) => updateFormSelect(event, item)}
+												options={state.formData[item].config.options}
+											/>
+										) : (
+											<FormField
+												nameProps={item}
+												formData={state.formData[item]}
+												change={(element) => updateForm(element)}
+											/>
+										)}
+									</div>
+								);
+							})}
+
+							<div className="success_label">{state.formSuccess}</div>
+							{state.formError && <div className="error_label">Something went wrong</div>}
+							<div className="admin_submit">
+								<CustomButton btnType="submit" loading={state.loading}>
+									{state.formType}
+								</CustomButton>
+							</div>
+						</form>
+					</div>
+				</div>
+			)}
 		</AdminLayout>
 	);
 };

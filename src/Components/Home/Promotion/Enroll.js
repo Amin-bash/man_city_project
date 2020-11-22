@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Fade from 'react-reveal/Fade';
 import FormField from '../../ui/FormFields';
 import { useForm } from 'react-hook-form';
-import { firebasePromotions } from '../../../firebase';
 import { CustomButton } from '../../ui/Button';
+import { firebasePromotionsService } from '../../Service/firebaseService'
+import { setStateErrorAndLoading, checkEmailValidation } from '../../Service/formFieldsService';
 
 const Enroll = (props) => {
 	const [ state, setState ] = useState({
@@ -41,70 +42,16 @@ const Enroll = (props) => {
 		});
 	};
 
-	const resetFormSuccess = (type) => {
-		const newFormData = { ...state.formData };
-		for (let key in newFormData) {
-			newFormData[key].value = '';
-			newFormData[key].valid = false;
-			newFormData[key].validationMessage = '';
-		}
-		setState((prevState) => {
-			prevState.loading = false;
-			prevState.formData = newFormData;
-			prevState.formSuccess = type ? 'Congratulations ' : 'Already on the database';
-			prevState.formError = false;
-			return { ...prevState };
-		});
-		clearSuccessMessage();
-	};
-
-	const clearSuccessMessage = () => {
-		setTimeout(() => {
-			setState((prevState) => {
-				prevState.formSuccess = '';
-				return { ...prevState };
-			});
-		}, 2000);
-	};
-
-	const setLoadingVal = (type) => {
-		setState((prevState) => {
-			prevState.loading = type;
-			return { ...prevState };
-		});
-	};
-
-	const firebasePromotionCall = (event) => {
-		firebasePromotions.orderByChild('email').equalTo(event.email).once('value').then((snapshot) => {
-			if (snapshot.val() === null) {
-				firebasePromotions.push(event);
-				resetFormSuccess(true);
-			} else {
-				resetFormSuccess(false);
-			}
-		});
-		resetFormSuccess();
-	};
-
 	const submitForm = (event) => {
-		setLoadingVal(true);
+		setStateErrorAndLoading(false, true, setState);
 		let valid = false;
 		if (event.email) {
-			valid = /\S+@\S+\.\S+/.test(event.email);
-			const message = `${!valid ? 'This must be a valid email' : ''}`;
-			setState((prevState) => {
-				prevState.formData.email.validationMessage = message;
-				return { ...prevState };
-			});
+			checkEmailValidation(setState, valid, event);
 		}
 		if (valid) {
-			firebasePromotionCall(event);
+			firebasePromotionsService(state, setState, event);
 		} else {
-			setState((prevState) => {
-				prevState.loading = false;
-				prevState.formError = true;
-				return { ...prevState };
-			});
+			setStateErrorAndLoading(true, false, setState);
 		}
 	};
 
