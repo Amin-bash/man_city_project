@@ -58,8 +58,8 @@ export const setStateErrorAndLoading = (errorVal, loadingVal, setState) => {
 
 // check if email is valid 
 export const checkEmailValidation = (setState, valid, event) => {
-	valid = /\S+@\S+\.\S+/.test(event.email);
-	const message = `${!valid ? 'This must be a valid email' : ''}`;
+	valid = {value: /\S+@\S+\.\S+/.test(event.email)};
+	const message = `${!valid.value ? 'This must be a valid email' : ''}`;
 	setState((prevState) => {
 		prevState.formData.email.validationMessage = message;
 		return { ...prevState };
@@ -158,7 +158,8 @@ export const updateFormSelectService = (event, item, setState) => {
 
 // Updating the form input
 export const updateFormInputService = (element, setState) => {
-	const eventValue = element.event.target.value;
+	let eventValue = element.event.target.value;
+
 	setState((prevState) => {
 		prevState.isFormUpdated = true;
 		prevState.formData[element.nameProps].value = eventValue;

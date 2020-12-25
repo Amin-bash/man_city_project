@@ -155,13 +155,13 @@ const AddEditPlayers = (props) => {
 		}
 	}, []);
 
-
 	// Select updates
 	const updateFormSelect = (event, item) => {
 		updateFormSelectService(event, item, setState);
 	};
 
 	// update Form inputs
+	// const updateForm = (element, content = '') => {
 	const updateForm = (element) => {
 		updateFormInputService(element, setState);
 	};
@@ -172,78 +172,78 @@ const AddEditPlayers = (props) => {
 	};
 
 	// testinggg
-		// const isFormUpdated = (setState) => {
-		// 	setState((prevState) => {
-		// 		prevState.isFormUpdated = false;
-		// 		return { ...prevState };
-		// 	});
-		// };
-		// const successForm = (setState) => {
-		// 	setState((prevState) => {
-		// 		prevState.formSuccess = 'Updated correctly';
-		// 		prevState.loading = false;
-		// 		return { ...prevState };
-		// 	});
-		// 	setTimeout(() => {
-		// 		setState((prevState) => {
-		// 			prevState.formSuccess = '';
-		// 			return { ...prevState };
-		// 		});
-		// 	}, 2000);
-		// };
+	// const isFormUpdated = (setState) => {
+	// 	setState((prevState) => {
+	// 		prevState.isFormUpdated = false;
+	// 		return { ...prevState };
+	// 	});
+	// };
+	// const successForm = (setState) => {
+	// 	setState((prevState) => {
+	// 		prevState.formSuccess = 'Updated correctly';
+	// 		prevState.loading = false;
+	// 		return { ...prevState };
+	// 	});
+	// 	setTimeout(() => {
+	// 		setState((prevState) => {
+	// 			prevState.formSuccess = '';
+	// 			return { ...prevState };
+	// 		});
+	// 	}, 2000);
+	// };
 
-		// // /sumbmiting on edit player
-		// const updatePlayerOrMatchServ = (dataToSubmit, refURL, setState) => {
-		// 	console.log('this function was called', dataToSubmit, ' this url ', refURL);
-		// 	firebaseDB
-		// 		.ref(refURL)
-		// 		.update(dataToSubmit)
-		// 		.then(() => {
-		// 			successForm(setState);
-		// 		})
-		// 		.catch((err) => {
-		// 			setStateErrorAndLoading(true, false, setState);
-		// 		});
-		// 		isFormUpdated(setState)
-		// };
+	// // /sumbmiting on edit player
+	// const updatePlayerOrMatchServ = (dataToSubmit, refURL, setState) => {
+	// 	console.log('this function was called', dataToSubmit, ' this url ', refURL);
+	// 	firebaseDB
+	// 		.ref(refURL)
+	// 		.update(dataToSubmit)
+	// 		.then(() => {
+	// 			successForm(setState);
+	// 		})
+	// 		.catch((err) => {
+	// 			setStateErrorAndLoading(true, false, setState);
+	// 		});
+	// 		isFormUpdated(setState)
+	// };
 
-		// const addPlayerOrMatchService = (dataToSubmit, refURL, setState, props) => {
-		// 	firebaseMatches
-		// 		.push(dataToSubmit)
-		// 		.then(() => {
-		// 			props.history.push(refURL);
-		// 			setStateErrorAndLoading(false, false, setState);
-		// 		})
-		// 		.catch((err) => {
-		// 			setStateErrorAndLoading(true, false, setState);
-		// 		});
-		// 		isFormUpdated(setState)
-		// };
-		// if (state.isFormUpdated) {
-		// 	setStateErrorAndLoading(false, true, setState);
-		// 	let dataToSubmit = {};
-		// 	let formIsValid = true;
-		// 	for (let key in state.formData) {
-		// 		dataToSubmit[key] = state.formData[key].value;
-		// 		formIsValid = state.formData[key].valid && formIsValid;
-		// 	}
+	// const addPlayerOrMatchService = (dataToSubmit, refURL, setState, props) => {
+	// 	firebaseMatches
+	// 		.push(dataToSubmit)
+	// 		.then(() => {
+	// 			props.history.push(refURL);
+	// 			setStateErrorAndLoading(false, false, setState);
+	// 		})
+	// 		.catch((err) => {
+	// 			setStateErrorAndLoading(true, false, setState);
+	// 		});
+	// 		isFormUpdated(setState)
+	// };
+	// if (state.isFormUpdated) {
+	// 	setStateErrorAndLoading(false, true, setState);
+	// 	let dataToSubmit = {};
+	// 	let formIsValid = true;
+	// 	for (let key in state.formData) {
+	// 		dataToSubmit[key] = state.formData[key].value;
+	// 		formIsValid = state.formData[key].valid && formIsValid;
+	// 	}
 
-		// 	if (formIsValid) {
-		// 			if (state.formType === 'Edit player') {
-		// 				// updatePlayerOrMatchServ(dataToSubmit, `players/${state.playerId}`, setState);
-		// 				updatePlayerOrMatchService(setState, dataToSubmit, `players/${state.playerId}`);
-		// 			} else {
-		// 				// Add Match
-		// 				addPlayerOrMatchService(setState, props, dataToSubmit, '/admin_players', firebasePlayers);
-		// 			}
-		// 	} else {
-		// 		setStateErrorAndLoading(true, false, setState);
-		// 	}
-		// }
-		// console.log(`players/${state.playerId}`, ' that is the player id', firebasePlayers);
+	// 	if (formIsValid) {
+	// 			if (state.formType === 'Edit player') {
+	// 				// updatePlayerOrMatchServ(dataToSubmit, `players/${state.playerId}`, setState);
+	// 				updatePlayerOrMatchService(setState, dataToSubmit, `players/${state.playerId}`);
+	// 			} else {
+	// 				// Add Match
+	// 				addPlayerOrMatchService(setState, props, dataToSubmit, '/admin_players', firebasePlayers);
+	// 			}
+	// 	} else {
+	// 		setStateErrorAndLoading(true, false, setState);
+	// 	}
+	// }
+	// console.log(`players/${state.playerId}`, ' that is the player id', firebasePlayers);
 
 	//Submit form
-	
+
 	// const updateField = (player, playerId, type, defaultImg) => {
 	// const newFormData = { ...state.formData };
 	// 	for (let key in newFormData) {
@@ -260,7 +260,7 @@ const AddEditPlayers = (props) => {
 	// 	});
 	// 	// updatePlayerAndMatchFieldService(player, playerId, type, state, setState, defaultImg);
 	// };
-	
+
 	const onSubmit = (event) => {
 		onSubmitPlayerOrMatch(state, setState, props, '/admin_players', `players/${state.playerId}`, firebasePlayers);
 	};

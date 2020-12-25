@@ -44,7 +44,7 @@ const Enroll = (props) => {
 
 	const submitForm = (event) => {
 		setStateErrorAndLoading(false, true, setState);
-		let valid = false;
+		let valid = {value: false};
 		if (event.email) {
 			checkEmailValidation(setState, valid, event);
 		}

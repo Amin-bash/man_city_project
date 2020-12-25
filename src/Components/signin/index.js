@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import FormField from '../ui/FormFields';
 import { CustomButton } from '../ui/Button';
-import { setStateErrorAndLoading } from '../Service/formFieldsService';
+import { checkEmailValidation, setStateErrorAndLoading } from '../Service/formFieldsService';
 import { firebaseSignInService } from '../Service/firebaseService';
 
 const SignIn = (props) => {
@@ -55,22 +55,14 @@ const SignIn = (props) => {
 		});
 	};
 
-	const firebaseCall = (email, password) => {
-		firebaseSignInService(setState, props, email, password);
-	};
-
 	const submitForm = (event) => {
-		setStateErrorAndLoading(false, true, setState)
+		setStateErrorAndLoading(false, true, setState);
+		let valid = {value: false};
 		if (event.email) {
-			const valid = /\S+@\S+\.\S+/.test(event.email);
-			const message = `${!valid ? 'This must be a valid email' : ''}`;
-			setState((prevState) => {
-				prevState.formData.email.validationMessage = message;
-				return { ...prevState };
-			});
+			checkEmailValidation(setState, valid, event);
 		}
 		if (event.email && event.password) {
-			firebaseCall(event.email, event.password);
+			firebaseSignInService(setState, props, event.email, event.password);
 		} else {
 			setStateErrorAndLoading(true, false, setState)
 		}

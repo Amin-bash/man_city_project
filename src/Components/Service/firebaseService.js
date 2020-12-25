@@ -29,29 +29,38 @@ export const updatePlayerOrMatchService = (setState, dataToSubmit, refURL) => {
 	isFormUpdated(setState);
 };
 
-// Sign in 
+// Check if user auth
+// export const isUserAuth = () => {
+// 	return firebase.auth().onAuthStateChanged(user => user)
+// }
+
+// Sign in
 export const firebaseSignInService = (setState, props, email, password) => {
-  firebase
-			.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then(() => {
-				setStateErrorAndLoading(false, false, setState)
-				props.history.push('/dashboard');
-			})
-			.catch((err) => {
-				setStateErrorAndLoading(true, false, setState)
-			});
-}
+	firebase
+		.auth()
+		.signInWithEmailAndPassword(email, password)
+		.then(() => {
+			setStateErrorAndLoading(false, false, setState);
+			props.history.push('/admin_matches');
+		})
+		.catch((err) => {
+			setStateErrorAndLoading(true, false, setState);
+		});
+};
 
 // Promotion
 export const firebasePromotionsService = (state, setState, event) => {
-  firebasePromotions.orderByChild('email').equalTo(event.email).once('value').then((snapshot) => {
-    if (snapshot.val() === null) {
-      firebasePromotions.push(event);
-      resetFormSuccess(state, setState, true);
-    } else {
-      resetFormSuccess(state, setState, false);
-    }
-  });
-  // resetFormSuccess(state, setState, true)
-}
+	firebasePromotions.orderByChild('email')
+	.equalTo(event.email).once('value')
+	.then((snapshot) => {
+		if (snapshot.val() === null) {
+			console.log('yes it is');
+			firebasePromotions.push(event);
+			resetFormSuccess(state, setState, true);
+		} else {
+			console.log('no it is');
+			resetFormSuccess(state, setState, false);
+		}
+	});
+	// resetFormSuccess(state, setState, true)
+};

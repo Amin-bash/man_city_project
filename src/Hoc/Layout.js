@@ -3,6 +3,7 @@ import Header from '../Components/Header_Footer/Header';
 import Footer from '../Components/Header_Footer/Footer';
 
 const Layout = (props) => {
+  console.log(props);
   return (
     <div>
       <Header />
