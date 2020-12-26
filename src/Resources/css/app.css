@@ -137,10 +137,17 @@ button {
 }
 
 
+/* Progress Circular */
+.progress_circular{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 /*=============================
             HEADER FOOTER
 ===============================*/
-
+/* 
 footer {
     text-align: center;
     font-size: 16px;
@@ -154,13 +161,13 @@ footer .img_cover{
 
 footer .footer_discl {
     margin: 10px 0px;
-}
+} */
 
 
 /*=============================
             FEATURED
 ===============================*/
-
+/* 
 .featured_wrapper {
     margin: 0 auto;
     width: 1280px;
@@ -214,12 +221,12 @@ footer .footer_discl {
     font-size: 92px;
     text-transform: uppercase;
     padding: 0px 20px;
-}
+} */
 
 /*=============================
             MATCHES HOME
 ===============================*/
-
+/* 
 .home_matches_wrapper {
     background: #98c5e9;
     margin-top:9px;
@@ -240,12 +247,12 @@ footer .footer_discl {
 .home_matches_wrapper .home_matches .item .wrapper {
     padding-right:30px;
 }
-
+ */
 
 /*=============================
             MATCHES BLOCK
 ===============================*/
-
+/* 
 .match_block .match_date{
     color:#ffffff;
     font-size:18px;
@@ -377,13 +384,13 @@ footer .footer_discl {
 
 .match_filters .cont {
     display: flex;
-}
+} */
 
 
 /*=============================
             MATCHES BLOCK
 ===============================*/
-
+/* 
 
 .home_meetplayers { 
     background: #ffffff;
@@ -404,14 +411,14 @@ footer .footer_discl {
 .home_meetplayers .home_text_wrapper {
     float: right;
     width: 390px;
-}
+} */
 
 /*=============================
             MATCHES BLOCK
 ===============================*/
 
 
-.player_card_wrapper {
+/* .player_card_wrapper {
     background: #ffffff;
     border: 1px solid #ececec;
     width: 300px;
@@ -450,13 +457,13 @@ footer .footer_discl {
 
 .home_text_wrapper {
     margin-top: 70px;
-}
+} */
 
 
 /*=============================
          PROMOTION
 ===============================*/
-
+/* 
 .promotion_wrapper {
     padding: 30px 0px 130px 0px;
 }
@@ -511,12 +518,12 @@ footer .footer_discl {
     width: 330px;
     margin: 0 auto;
     padding: 10px 0px;
-}
+} */
 
 /*=============================
          THE MATCHES
 ===============================*/
-
+/* 
 .the_matches_container {
     margin-top: 96px;
 }
@@ -547,7 +554,7 @@ footer .footer_discl {
 .the_matches_wrapper .progress {
     text-align: center;
     padding: 60px 0px;
-}
+} */
 
 
 
@@ -556,7 +563,7 @@ footer .footer_discl {
          ADMIN
 ===============================*/
 
-.admin_container {
+/* .admin_container {
     margin-top: 96px;
     display:flex;
 }
@@ -619,13 +626,13 @@ footer .footer_discl {
     font-size: 20px;
     margin: 40px 0px;
     background: #009688;
-}
+} */
 
 /*=============================
          THE TEAM
 ===============================*/
 
-.the_team_container {
+/* .the_team_container {
     margin-top: 96px;
     padding: 20px;
     background-size: 5px 5px !important;
@@ -646,12 +653,12 @@ footer .footer_discl {
 .team_category_wrapper .team_cards .item{
     margin-right: 20px;
     margin-bottom: 20px;
-}
+} */
 
 /*=============================
             SIGN IN
 ===============================*/
-
+/* 
 .signin_wrapper {
     margin-top: 96px;
     padding: 20px;
@@ -681,4 +688,4 @@ footer .footer_discl {
     color: #d5ebfe;
     text-align: center;
     margin-top: 200px;
-}
+} */

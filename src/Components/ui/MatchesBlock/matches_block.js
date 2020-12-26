@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.scss';
 
 const MatchesBlock = ({match}) => {
   return (
@@ -32,3 +33,4 @@ const MatchesBlock = ({match}) => {
 };
 
 export default MatchesBlock;
+

@@ -1,6 +1,7 @@
 import React from 'react';
 import Zoom from 'react-reveal/Zoom';
 import Jersey from '../../../Resources/images/jersey.jpg'
+import './styles.scss';
 
 const PromotionAnimation = () => {
   return (

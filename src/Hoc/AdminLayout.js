@@ -1,5 +1,6 @@
 import React from 'react';
 import AdminNav from '../Components/Admin/Nav/AdminNav';
+import './style.scss'
 
 const AdminLayout = (props) => {
   return (

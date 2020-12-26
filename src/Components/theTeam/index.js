@@ -3,7 +3,9 @@ import Stripes from '../../Resources/images/stripes.png';
 import { firebasePlayers, firebase } from '../../firebase';
 import { firebaseLooper } from '../ui/misc';
 import { Fade } from 'react-reveal';
-import PlayerCard from '../ui/PlayerCard';
+import PlayerCard from '../ui/PlayerCard/PlayerCard';
+import './style.scss'
+import { CircularProgress } from '@material-ui/core';
 
 const TheTeam = () => {
 	const [ state, setState ] = useState({
@@ -71,7 +73,7 @@ const TheTeam = () => {
 				backgroundImage: `url(${Stripes})`
 			}}
 		>
-			{!state.loading && (
+			{!state.loading ? (
 				<div>
 					<div className="team_category_wrapper">
 						<div className="title">Keepers</div>
@@ -93,6 +95,10 @@ const TheTeam = () => {
 						<div className="team_cards">{showPlayersByCategory("Striker")}</div>
 					</div>
           
+				</div>
+			): (
+				<div className="progress_circular">
+				<CircularProgress thickness={5} size={130} style={{ color: '#98c5e9' }} />
 				</div>
 			)}
 		</div>

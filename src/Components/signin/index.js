@@ -4,6 +4,7 @@ import FormField from '../ui/FormFields';
 import { CustomButton } from '../ui/Button';
 import { checkEmailValidation, setStateErrorAndLoading } from '../Service/formFieldsService';
 import { firebaseSignInService } from '../Service/firebaseService';
+import './style.scss'
 
 const SignIn = (props) => {
 	const [ state, setState ] = useState({

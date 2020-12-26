@@ -139,7 +139,6 @@ const AddEditPlayers = (props) => {
 			firebaseDB.ref(`players/${playerId}`).once('value').then((snapshot) => {
 				const playerData = snapshot.val();
 				firebase.storage().ref('players').child(playerData.image).getDownloadURL().then((imageUrl) => {
-					// updateField(playerData, playerId, 'Edit player', imageUrl)
 					updatePlayerAndMatchFieldService(
 						state,
 						setState,
@@ -170,96 +169,6 @@ const AddEditPlayers = (props) => {
 	const updateImage = (element, content) => {
 		updateImageInputService(element.id, setState, content);
 	};
-
-	// testinggg
-	// const isFormUpdated = (setState) => {
-	// 	setState((prevState) => {
-	// 		prevState.isFormUpdated = false;
-	// 		return { ...prevState };
-	// 	});
-	// };
-	// const successForm = (setState) => {
-	// 	setState((prevState) => {
-	// 		prevState.formSuccess = 'Updated correctly';
-	// 		prevState.loading = false;
-	// 		return { ...prevState };
-	// 	});
-	// 	setTimeout(() => {
-	// 		setState((prevState) => {
-	// 			prevState.formSuccess = '';
-	// 			return { ...prevState };
-	// 		});
-	// 	}, 2000);
-	// };
-
-	// // /sumbmiting on edit player
-	// const updatePlayerOrMatchServ = (dataToSubmit, refURL, setState) => {
-	// 	console.log('this function was called', dataToSubmit, ' this url ', refURL);
-	// 	firebaseDB
-	// 		.ref(refURL)
-	// 		.update(dataToSubmit)
-	// 		.then(() => {
-	// 			successForm(setState);
-	// 		})
-	// 		.catch((err) => {
-	// 			setStateErrorAndLoading(true, false, setState);
-	// 		});
-	// 		isFormUpdated(setState)
-	// };
-
-	// const addPlayerOrMatchService = (dataToSubmit, refURL, setState, props) => {
-	// 	firebaseMatches
-	// 		.push(dataToSubmit)
-	// 		.then(() => {
-	// 			props.history.push(refURL);
-	// 			setStateErrorAndLoading(false, false, setState);
-	// 		})
-	// 		.catch((err) => {
-	// 			setStateErrorAndLoading(true, false, setState);
-	// 		});
-	// 		isFormUpdated(setState)
-	// };
-	// if (state.isFormUpdated) {
-	// 	setStateErrorAndLoading(false, true, setState);
-	// 	let dataToSubmit = {};
-	// 	let formIsValid = true;
-	// 	for (let key in state.formData) {
-	// 		dataToSubmit[key] = state.formData[key].value;
-	// 		formIsValid = state.formData[key].valid && formIsValid;
-	// 	}
-
-	// 	if (formIsValid) {
-	// 			if (state.formType === 'Edit player') {
-	// 				// updatePlayerOrMatchServ(dataToSubmit, `players/${state.playerId}`, setState);
-	// 				updatePlayerOrMatchService(setState, dataToSubmit, `players/${state.playerId}`);
-	// 			} else {
-	// 				// Add Match
-	// 				addPlayerOrMatchService(setState, props, dataToSubmit, '/admin_players', firebasePlayers);
-	// 			}
-	// 	} else {
-	// 		setStateErrorAndLoading(true, false, setState);
-	// 	}
-	// }
-	// console.log(`players/${state.playerId}`, ' that is the player id', firebasePlayers);
-
-	//Submit form
-
-	// const updateField = (player, playerId, type, defaultImg) => {
-	// const newFormData = { ...state.formData };
-	// 	for (let key in newFormData) {
-	// 			newFormData[key].value = player[key];
-	// 			newFormData[key].valid = true;
-	// 	}
-	// 	setState((prevState) => {
-	// 		prevState.playerId = playerId;
-	// 		prevState.formType = type;
-	// 		prevState.formData = newFormData;
-	// 		prevState.defaultImg = defaultImg;
-	// 		prevState.pageLoading = false;
-	// 		return { ...prevState };
-	// 	});
-	// 	// updatePlayerAndMatchFieldService(player, playerId, type, state, setState, defaultImg);
-	// };
 
 	const onSubmit = (event) => {
 		onSubmitPlayerOrMatch(state, setState, props, '/admin_players', `players/${state.playerId}`, firebasePlayers);

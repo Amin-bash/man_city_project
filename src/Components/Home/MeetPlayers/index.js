@@ -3,6 +3,7 @@ import Stripes from '../../../Resources/images/stripes.png';
 import { Tag } from '../../ui/misc';
 import Reveal from 'react-reveal/Reveal';
 import HomeCard from './Cards';
+import './style.scss';
 
 export default class MeetPlayers extends Component {
 	state = {

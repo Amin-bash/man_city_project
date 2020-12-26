@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress } from '@material-ui/core/CircularProgress';
+import { CircularProgress } from '@material-ui/core';
 import { firebaseMatches } from '../../firebase';
 import { firebaseLooper, reverseArray } from '../ui/misc';
 import LeagueTable from './table';
 import MatchesList from './matchesList';
+import './style.scss'
 
 const TheMatches = () => {
 	const [ state, setState ] = useState({
@@ -48,6 +49,12 @@ const TheMatches = () => {
 
 	return (
 		<div className="the_matches_container">
+		{state.loading ? (
+			<div className="progress_circular">
+				<CircularProgress thickness={5} size={130} style={{ color: '#98c5e9' }} />
+			</div>
+		) : (
+
 			<div className="the_matches_wrapper">
 				<div className="left">
 					<div className="match_filters">
@@ -111,6 +118,7 @@ const TheMatches = () => {
 					<LeagueTable />
 				</div>
 			</div>
+		)}
 			{/* <CircularProgress */}
 		</div>
 	);

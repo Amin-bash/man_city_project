@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Animate } from 'react-move';
 import { easePolyOut } from 'd3-ease';
 import FeaturedPlayer from '../../../Resources/images/featured_player.png';
+import './styles.scss';
 
 export default class Text extends Component {
 	state = {

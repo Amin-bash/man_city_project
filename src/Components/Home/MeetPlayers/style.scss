@@ -1,0 +1,18 @@
+
+.home_meetplayers { 
+  background: #ffffff;
+  .home_meetplayers_wrapper {
+    padding-bottom: 100px;
+    min-height: 600px;
+  }
+  .home_card_wrapper {
+    position: relative;
+    float: left;
+    width: 630px;
+    min-height: 600px;
+  }
+  .home_text_wrapper {
+    float: right;
+    width: 390px;
+  }
+}

@@ -197,7 +197,6 @@ const AddEditMatch = (props) => {
 						value: childSnapshot.val().shortName
 					});
 				});
-				// updateFields(match, teams, type, matchId, teamOptions);
 				updatePlayerAndMatchFieldService(state, setState, match, matchId, type, null, teams, teamOptions);
 			});
 		};
@@ -212,64 +211,6 @@ const AddEditMatch = (props) => {
 			});
 		}
 	}, []);
-
-	// const updateFields = (match, teams, type, matchId, teamOptions) => {
-	// 	const newFormData = { ...state.formData };
-	// 	for (let key in newFormData) {
-	// 		if (match) {
-	// 			newFormData[key].value = match[key];
-	// 			newFormData[key].valid = true;
-	// 		}
-	// 		if (key === 'local' || key === 'away') {
-	// 			newFormData[key].config.options = teamOptions;
-	// 		}
-	// 	}
-	// 	// Update the values
-	// 	setState((prevState) => {
-	// 		prevState.matchId = matchId;
-	// 		prevState.formType = type;
-	// 		prevState.formData = newFormData;
-	// 		prevState.teams = teams;
-	// 		return { ...prevState };
-	// 	});
-	// };
-
-	// const getLocalAwayThumb = (dataToSubmit) => {
-	// 	state.teams.forEach((team) => {
-	// 		if (team.shortName === dataToSubmit.local) {
-	// 			dataToSubmit['localThmb'] = team.thmb;
-	// 		}
-	// 		if (team.shortName === dataToSubmit.away) {
-	// 			dataToSubmit['awayThmb'] = team.thmb;
-	// 		}
-	// 	});
-	// };
-
-	// if (state.isFormUpdated) {
-	// 	setStateErrorAndLoading(false, true, setState);
-
-	// 	let dataToSubmit = {};
-	// 	let formIsValid = true;
-	// 	for (let key in state.formData) {
-	// 		dataToSubmit[key] = state.formData[key].value;
-	// 		formIsValid = state.formData[key].valid && formIsValid;
-	// 	}
-
-	// 	getLocalAwayThumb(dataToSubmit);
-	// 	if (formIsValid) {
-	// 		if (state.formType === 'Edit Match') {
-	// 			// firebaseEditMatch(dataToSubmit);
-	// 			updatePlayerOrMatchService(setState, dataToSubmit, `matches/${state.matchId}`);
-	// 		} else {
-	// 			// Add Match
-	// 			addPlayerOrMatchService(setState, props, dataToSubmit, '/admin_matches',firebaseMatches);
-	// 		}
-	// 	} else {
-	// 		setStateErrorAndLoading(true, false, setState);
-	// 	}
-	// }
-	
-	// 
 	
 	// update Form inputs
 	const updateForm = (element) => {

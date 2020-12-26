@@ -29,11 +29,6 @@ export const updatePlayerOrMatchService = (setState, dataToSubmit, refURL) => {
 	isFormUpdated(setState);
 };
 
-// Check if user auth
-// export const isUserAuth = () => {
-// 	return firebase.auth().onAuthStateChanged(user => user)
-// }
-
 // Sign in
 export const firebaseSignInService = (setState, props, email, password) => {
 	firebase

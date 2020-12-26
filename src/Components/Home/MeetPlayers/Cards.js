@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Animate from 'react-move/Animate';
 import Otamendi from '../../../Resources/images/players/Otamendi.png';
 import { easePolyOut } from 'd3-ease';
-import PlayerCard from '../../ui/PlayerCard';
+import PlayerCard from '../../ui/PlayerCard/PlayerCard';
 
 export default class HomeCard extends Component {
 	state = {

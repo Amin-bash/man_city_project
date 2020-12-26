@@ -5,17 +5,18 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { CityLogo } from '../ui/icons';
 import { firebase } from '../../firebase';
+import './style.scss'
 
-// import { isUserAuth } from '../Service/firebaseService';
+const Header = () => {
+  const [emailAdmin, setEmailAdmin] = useState('');
 
-export const Header = () => {
-  // const [emailAdmin, setEmailAdmin] = useState('');
-
-  // firebase.auth().onAuthStateChanged((user) => {
-  //   if (user !== null) {
-  //     setEmailAdmin(<div>sdsdijsijs</div>)
-  //   }
-  // });
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user !== null) {
+      setEmailAdmin(user.email);
+    } else {
+      setEmailAdmin('');
+		}
+  });
 	
 	return (
 		<AppBar
@@ -33,31 +34,6 @@ export const Header = () => {
 						<CityLogo link={true} linkTo="/" width="70px" height="70px" />
 					</div>
 				</div>
-				{/* {adminEmail} */}
-				{/* {this.props.user !== null && (
-						<Link to="/the_team">
-							<Button color="inherit">Test</Button>
-						</Link>
-					)} */}
-
-				{/* {isUserAuth() !== null && (
-					<Link to="/the_team">
-						<Button color="inherit">Test</Button>
-					</Link>
-				)} */}
-
-				{/* {isUser()} */}
-				{/* {firebase.auth().onAuthStateChanged((user) => {
-					if (user !== null) {
-            console.log('====================================');
-            console.log(user);
-            console.log('====================================');
-						return <Link to="/the_team">
-							<Button color="inherit">Testing</Button>
-						</Link>;
-					}
-				})} */}
-        {/* {emailAdmin} */}
 				<Link to="/the_team">
 					<Button color="inherit">The Team</Button>
 				</Link>
@@ -67,6 +43,7 @@ export const Header = () => {
 				<Link to="/admin_matches">
 					<Button color="inherit">Dashboard</Button>
 				</Link>
+        {emailAdmin && <Button color="inherit">{emailAdmin}</Button>}
 			</Toolbar>
 		</AppBar>
 	);

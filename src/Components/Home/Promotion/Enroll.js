@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { CustomButton } from '../../ui/Button';
 import { firebasePromotionsService } from '../../Service/firebaseService'
 import { setStateErrorAndLoading, checkEmailValidation } from '../../Service/formFieldsService';
+import './styles.scss';
 
 const Enroll = (props) => {
 	const [ state, setState ] = useState({

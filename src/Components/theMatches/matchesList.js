@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { easePolyInOut } from 'd3-ease';
 import NodeGroup from 'react-move/NodeGroup';
+import './style.scss';
 
 export default class MatchesList extends Component {
 	state = {

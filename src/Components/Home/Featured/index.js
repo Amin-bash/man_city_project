@@ -1,6 +1,7 @@
 import React from 'react';
 import Stripes from './Stripes';
 import Text from './Text';
+import './styles.scss'
 
 const Featured = () => {
   return (

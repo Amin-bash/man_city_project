@@ -31,11 +31,6 @@ const FormField = ({ formData, options, selectedValue, id, change, refProps, nam
 							name={nameProps}
 							ref={refProps}
 						/>
-						{/* <input
-							{...formData.config}
-							value={formData.value}
-							onChange={(event) => change({ event, id })}
-						/> */}
 						{showError()}
 					</div>
 				);
@@ -52,16 +47,6 @@ const FormField = ({ formData, options, selectedValue, id, change, refProps, nam
 							getOptionLabel={options => options.value}
 							getOptionValue={options => options.value}
 						/>
-						{/* <select 
-							value={formData.value} 
-							onChange={(event) => change({ event, id })}>
-							<option value="">Select one</option>
-							{formData.config.option.map((item) => (
-								<option key={item.key} value={item.key}>
-									{item.value}
-								</option>
-							))}
-						</select> */}
 						{showError()}
 					</div>
 				);
