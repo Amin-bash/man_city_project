@@ -92,6 +92,8 @@ const SignIn = (props) => {
 					<CustomButton loading={state.loading} btnType="submit">
 						Login
 					</CustomButton>
+					<p>Username: admin.admin10@test.com</p>
+					<p>password: adminadmin</p>
 				</form>
 			</div>
 		</div>

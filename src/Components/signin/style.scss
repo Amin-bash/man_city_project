@@ -25,3 +25,18 @@
   text-align: center;
   margin-top: 200px;
 }
+
+@media(max-width: 400px) {
+  .signin_wrapper { 
+    margin: 100px 50px !important;
+    form {
+      width: 100%;
+      button {
+        padding: 3px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+    }
+  }
+}
