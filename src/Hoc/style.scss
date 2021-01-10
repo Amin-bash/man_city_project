@@ -29,13 +29,11 @@
   }
 }
 
-
 .editmatch_dialog_wrapper,
 .editplayers_dialog_wrapper {
   padding: 20px;
   width: 480px;
 }
-
 
 .select_team_layout {
   .wrapper{
@@ -52,12 +50,32 @@
 }
 }
 
-
-// .select_team_layout input[name=result_local_input],
-// .select_team_layout input[name=result_away_input] 
-
 .admin_submit button {
   font-size: 20px;
   margin: 40px 0px;
   background: #009688;
+}
+
+@media(max-width: 400px) {
+  .admin_container {
+    h2 {
+      margin: 0px 0px 10px 0px;
+      font-size: 20px;
+    }
+  }
+  .admin_container .admin_left_nav {
+    width: 145px;
+    // position: relative;
+  }
+  .admin_submit button {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+
+
+  .editmatch_dialog_wrapper,
+  .editplayers_dialog_wrapper {
+    padding: 6px;
+    width: unset;
+  }
 }

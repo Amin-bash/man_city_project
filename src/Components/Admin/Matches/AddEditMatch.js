@@ -3,7 +3,7 @@ import AdminLayout from '../../../Hoc/AdminLayout';
 import FormField from '../../ui/FormFields';
 import { useForm } from 'react-hook-form';
 import { CustomButton } from '../../ui/Button';
-import './styles.css';
+import './styles.scss';
 import { firebaseTeams, firebaseDB, firebaseMatches } from '../../../firebase';
 import { firebaseLooper } from '../../ui/misc';
 import { addPlayerOrMatchService, updatePlayerOrMatchService } from '../../Service/firebaseService';

@@ -1,0 +1,12 @@
+.sm-nav-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  button {
+    width: 100%;
+    color: white;
+  }
+}
+.MuiDrawer-paperAnchorRight {
+  background-color: rgb(152, 197, 233) !important;
+}

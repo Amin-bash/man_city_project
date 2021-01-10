@@ -127,3 +127,59 @@
   text-align: center;
   padding: 60px 0px;
 }
+
+
+@media(max-width: 650px) {
+  .match_box_big {
+    padding: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .block_wraper {
+      margin-right: 20px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .nfo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .icon {
+      width: 30px;
+      height: 30px;
+    }
+    .block {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}
+
+@media(max-width: 400px) {
+  .home_matches_wrapper {
+    padding: 10px 0;
+    .home_matches {
+      margin-top: 20px;
+    }
+  }
+  .match_box_big {
+    .block {
+      .team, .result {
+        font-size: 14px;
+      }
+    }
+    .nfo {
+      div {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+    }
+  }
+  .match_filters {
+    flex-direction: column;
+  }
+}

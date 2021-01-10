@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { easePolyOut } from 'd3-ease';
 import Animate from 'react-move/Animate';
-import './styles.scss'
+import './styles.scss';
 
-export default class Stripes extends Component {
-	state = {
+const Stripes = () => {
+	const [ state, setstate ] = useState({
 		stripes: [
 			{
 				background: '#98cfe9',
@@ -28,35 +28,43 @@ export default class Stripes extends Component {
 				delay: 400
 			}
 		]
+	});
+
+	
+
+	const showStripes = () => {
+			return state.stripes.map((stripe, i) => (
+				<Animate
+					key={i}
+					show={true}
+					start={{ background: '#ffffff', opacity: 0, left: 0, rotate: 0, top: 0 }}
+					enter={{
+						background: stripe.background,
+						opacity: 1,
+						left: [ stripe.left ],
+						rotate: [ stripe.rotate ],
+						top: [ stripe.top ],
+						timing: { delay: stripe.delay, duration: 200, easePolyOut }
+					}}
+				>
+					{({ left, opacity, background, rotate, top }) => {
+						return (
+							<div
+								className="stripe"
+								style={{
+									background,
+									opacity,
+									left,
+									transform: `rotate(${rotate}deg) translate(${left}px, ${top}px)`
+								}}
+							/>
+						);
+					}}
+				</Animate>
+			));
 	};
 
-	showStripes = () => {
-		return this.state.stripes.map((stripe, i) => (
-			<Animate
-				key={i}
-				show={true}
-				start={{ background: '#ffffff', opacity: 0, left: 0, rotate: 0, top: 0 }}
-				enter={{
-					background:  stripe.background ,
-					opacity: 1,
-					left: [ stripe.left ],
-					rotate: [ stripe.rotate ],
-					top: [ stripe.top ],
-					timing: { delay: stripe.delay, duration: 200, easePolyOut }
-				}}
-			>
-				{({ left, opacity, background, rotate, top }) => {
-					return (
-						<div
-							className="stripe"
-							style={{ background, opacity, left, transform: `rotate(${rotate}deg) translate(${left}px, ${top}px)` }}
-						/>
-					);
-				}}
-			</Animate>
-		));
-	};
-	render() {
-		return <div className="featured_stripes"  >{this.showStripes()}</div>;
-	}
-}
+	return <div className="featured_stripes">{showStripes()}</div>;
+};
+
+export default Stripes;

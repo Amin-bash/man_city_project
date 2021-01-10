@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from '@material-ui/core';
 import {firebase} from '../../../firebase'
+import './style.scss';
 
 const AdminNav = () => {
 
@@ -47,9 +48,11 @@ const AdminNav = () => {
   }
 
   return (
-    <div>
+    <div className="admin-nav-container">
+      <div className="admin-nav-content">
       {renderItems()}
        <ListItem button style={styles} onClick={() => logoutHandler()}>Log out</ListItem>
+      </div>
     </div>
   );
 };

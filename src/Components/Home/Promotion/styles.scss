@@ -47,3 +47,48 @@
   }
 }
 
+@media(max-width: 800px) {
+  .container {
+    width: unset !important;
+  }
+
+  .promotion_wrapper {
+    padding: 30px 0px 30px 0px;
+    .promotion_animation {
+      .left {
+        font-size: 90px;
+      }
+    }
+  }
+}
+
+@media(max-width: 500px) {
+  .promotion_wrapper {
+    .promotion_animation {
+      display: flex;
+      padding: 15px 0px 30px 0px;
+      flex-direction: column;
+      .left, .right {
+        width: 100%;
+        text-align: center;
+      }
+      .left {
+        font-size: 30px;
+        line-height: 35px;
+      }
+      .right {
+        div {
+          width: 200px;
+          height: 200px;
+          margin-left: 60px;
+        }
+      }
+    }
+    .enroll_title {
+      font-size: 20px;
+    }
+    .enroll_input {
+      width: 250px;
+    }
+  }
+}

@@ -13,3 +13,9 @@ footer .img_cover{
 footer .footer_discl {
   margin: 10px 0px;
 }
+
+@media (max-width: 400px) {
+  .header-nav {
+    padding: 3px 0 !important;
+  }
+}

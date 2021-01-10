@@ -54,3 +54,85 @@
   
 }
 
+@media (max-width: 780px) {
+  .featured_wrapper {
+    width: unset;
+    height: 400px;
+    position: relative;
+    .featured_stripes {
+      .stripe {
+        display: none;
+      }
+    }
+    .featured_player {
+      width: 100%;
+      height: 290px;
+      // translate(231px, 165px)
+      transform: unset !important;
+    }
+    .featured-image-sm {
+      width: 100%;
+      height: 250px;
+      background-size: contain !important;
+      background-repeat: no-repeat !important;
+      position: absolute;
+      top: 50%;
+      right: -50%;
+    }
+    .wins-number {
+      font-size: 60px;
+      width: fit-content;
+      padding: 1px 8px;
+      position: absolute;
+      top: 60%;
+      left: 25%;
+      color: white;
+    }
+    .champions {
+      p {
+        background: white;
+        width: fit-content;
+        font-size: 35px;
+        padding: 8px;
+        position: absolute;
+        border-radius: 3px;
+      }
+      .champ-p {
+        top: 75%;
+        left: 25%;
+      }
+      .league-p {
+        top: 59%;
+        left: 45%;
+      }
+    }
+  }
+}
+
+@media(max-width: 400px) {
+  .featured_wrapper{
+    height: 340px;
+    margin-top: 66px;
+    .featured-image-sm {
+      height: 160px;
+      right: -23%;
+    }
+    .wins-number {
+      left: 15%;
+      top: 37%;
+    }
+    .champions {
+      p {
+        font-size: 20px;
+      }
+      .league-p {
+        top: 7%;
+        left: 15%;
+      }
+      .champ-p {
+        top: 21%;
+        left: 15%;
+      }
+    }
+  }
+}

@@ -16,3 +16,45 @@
     width: 390px;
   }
 }
+
+
+@media(max-width: 800px) {
+  .home_meetplayers {
+    .home_meetplayers_wrapper {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 0;
+    }
+    .home_card_wrapper {
+      width: unset;
+      min-height: 470px;
+    }
+  }
+  
+  .home_text_wrapper {
+    margin-top: 20px;
+  }
+  .player_card_wrapper {
+    width: 200px;
+    .player_card_number {
+      font-size: 30px;
+      line-height: 60px;
+    }
+    .player_card_name {
+      span{
+        font-size: 20px;
+      }
+    }
+  } 
+}
+
+@media(max-width: 400px) {
+  .home_meetplayers {
+    .home_card_wrapper {
+      overflow: hidden;
+    }
+    .home_text_wrapper {
+      width: unset;
+    }
+  }
+}

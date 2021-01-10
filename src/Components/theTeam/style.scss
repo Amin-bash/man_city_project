@@ -21,3 +21,48 @@
     }
   }
 }
+
+
+@media(max-width: 400px) {
+
+  .home_meetplayers {
+    .home_meetplayers_wrapper {
+      min-height: 500px;
+    }
+    .home_card_wrapper {
+      width: unset;
+      min-height: 230px;
+    }
+  } 
+  
+  .team_category_wrapper {
+    .title {
+      font-size: 40px;
+    }
+  }
+  .player_card_wrapper {
+    width: 100px;
+    padding: 10px 10px 10px 10px;
+
+    .player_card_nfo {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .player_card_number {
+      font-size: 20px;
+      line-height: unset;
+    }
+    .player_card_name {
+      position: static;
+      span {
+        font-size: 12px;
+      }
+    }
+    .player_card_thmb {
+      height: 100px;
+    }
+  }
+}

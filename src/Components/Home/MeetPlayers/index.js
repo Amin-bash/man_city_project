@@ -4,6 +4,7 @@ import { Tag } from '../../ui/misc';
 import Reveal from 'react-reveal/Reveal';
 import HomeCard from './Cards';
 import './style.scss';
+import { Button } from '@material-ui/core';
 
 export default class MeetPlayers extends Component {
 	state = {
@@ -19,9 +20,7 @@ export default class MeetPlayers extends Component {
 				<div className="home_meetplayers" style={{ background: `#ffffff url(${Stripes})` }}>
 					<div className="container">
 						<div className="home_meetplayers_wrapper">
-							<div className="home_card_wrapper">
-								<HomeCard show={this.state.show} />
-							</div>
+							
 							<div className="home_text_wrapper">
 								<div>
 									<Tag
@@ -78,6 +77,9 @@ export default class MeetPlayers extends Component {
 										Meet them here
 									</Tag>
 								</div>
+							</div>
+							<div className="home_card_wrapper">
+								<HomeCard show={this.state.show} />
 							</div>
 						</div>
 					</div>

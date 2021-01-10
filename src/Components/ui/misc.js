@@ -11,14 +11,16 @@ export const Tag = (props) => {
 				padding: '5px 10px',
 				display: 'inline-block',
 				fontFamily: 'Righteous',
+				borderRadius: '3px',
 				...props.add
 			}}
+			className="sm-screen-titles"
 		>
 			{props.children}
 		</div>
 	);
 	if (props.link) {
-		return <Link to={props.linkTo}>{template}</Link>;
+		return <Link className="sm-link-screen" to={props.linkTo}>{template}</Link>;
 	} else {
 		return template;
 	}
