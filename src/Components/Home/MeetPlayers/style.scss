@@ -10,6 +10,7 @@
     float: left;
     width: 630px;
     min-height: 600px;
+    overflow: hidden;
   }
   .home_text_wrapper {
     float: right;
@@ -28,6 +29,7 @@
     .home_card_wrapper {
       width: unset;
       min-height: 470px;
+      overflow: hidden;
     }
   }
   
