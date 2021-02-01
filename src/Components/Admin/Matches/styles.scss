@@ -3,7 +3,7 @@
   display: inline-block;
 }
 
-@media(max-width: 400px) {
+@media(max-width: 800px) {
   .admin_container {
     overflow: hidden;
     margin-top: 67px;
@@ -14,6 +14,5 @@
   .MuiTableCell-head, .MuiTableCell-body {
     padding: 6px 8px !important;
     font-size: 10px !important;
-
   }
 }

@@ -56,7 +56,20 @@
   background: #009688;
 }
 
-@media(max-width: 400px) {
+// @media(max-width: 800px) {
+//   .editmatch_dialog_wrapper,
+//   .editplayers_dialog_wrapper {
+//     width: unset;
+//   }
+// }
+
+@media(max-width: 800px) {
+  
+  .editmatch_dialog_wrapper,
+  .editplayers_dialog_wrapper {
+    width: unset;
+  }
+
   .admin_container {
     h2 {
       margin: 0px 0px 10px 0px;

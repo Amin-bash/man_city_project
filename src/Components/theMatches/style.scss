@@ -159,10 +159,13 @@
   }
 }
 
-@media(max-width: 400px) {
+@media (max-width: 800px) {
   .the_matches_container {
-    margin-top: 67px;
+    margin-top: 66px;
   }
+}
+
+@media(max-width: 400px) {
   .home_matches_wrapper {
     padding: 10px 0;
     .home_matches {

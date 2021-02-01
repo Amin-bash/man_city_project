@@ -23,8 +23,12 @@
 }
 
 
-@media(max-width: 400px) {
+@media(max-width: 800px) {
 
+  .the_team_container {
+    margin-top: 66px;
+  }
+  
   .home_meetplayers {
     .home_meetplayers_wrapper {
       min-height: 500px;

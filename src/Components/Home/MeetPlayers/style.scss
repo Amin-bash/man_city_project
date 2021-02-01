@@ -4,6 +4,7 @@
   .home_meetplayers_wrapper {
     padding-bottom: 100px;
     min-height: 600px;
+    // overflow: hidden;
   }
   .home_card_wrapper {
     position: relative;
@@ -29,7 +30,7 @@
     .home_card_wrapper {
       width: unset;
       min-height: 470px;
-      overflow: hidden;
+      // overflow: hidden;
     }
   }
   

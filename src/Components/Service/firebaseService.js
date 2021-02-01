@@ -49,11 +49,9 @@ export const firebasePromotionsService = (state, setState, event) => {
 	.equalTo(event.email).once('value')
 	.then((snapshot) => {
 		if (snapshot.val() === null) {
-			console.log('yes it is');
 			firebasePromotions.push(event);
 			resetFormSuccess(state, setState, true);
 		} else {
-			console.log('no it is');
 			resetFormSuccess(state, setState, false);
 		}
 	});

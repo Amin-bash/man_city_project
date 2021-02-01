@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import { firebaseMatches } from '../../../firebase';
 import { firebaseLooper, reverseArray } from '../../ui/misc';
 import { Link } from 'react-router-dom';
+import './styles.scss'
 
 export default class AdminMatches extends Component {
 	state = {

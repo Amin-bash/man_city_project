@@ -186,7 +186,6 @@ const AddEditMatch = (props) => {
 	useEffect(() => {
 		isPageLoading(true, setState);
 		const matchId = props.match.params.id;
-		console.log(matchId, ' here i got the match id from useSate');
 		const getTeams = (match, type) => {
 			firebaseTeams.once('value').then((snapshot) => {
 				const teams = firebaseLooper(snapshot);
